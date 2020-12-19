@@ -18,6 +18,9 @@ y = np.array(data[predict])  # all precit actual values
 
 best = 0
 for _ in range(30):
+    """
+    This for-loop is used to save the best prediction accuracy out of 30 predictions
+    """
     x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
 
     linear = linear_model.LinearRegression()
