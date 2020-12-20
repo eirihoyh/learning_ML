@@ -5,7 +5,7 @@ import numpy as np
 data = datasets.imdb
 
 (train_data, train_labels), (test_data, test_labels) = data.load_data(
-    num_words=10_000)  # Takes only words that are given 10 000 times
+    num_words=88_000)
 
 word_index = data.get_word_index()
 
@@ -30,7 +30,7 @@ def decode_review(text):
 #  model down here
 
 model = Sequential()
-model.add(layers.Embedding(10_000, 16))
+model.add(layers.Embedding(88_000, 16))
 model.add(layers.GlobalAveragePooling1D())
 model.add(layers.Dense(16, activation="relu"))
 model.add(layers.Dense(1, activation="sigmoid"))
@@ -55,3 +55,5 @@ predict = model.predict([test_review])
 print(f"Review: \n{decode_review(test_review)}\nPrediction: {str(predict[0])}\nActual: "
       f"{str(test_labels[0])}")
 print(results)
+
+model.save("../data/model.h5")
